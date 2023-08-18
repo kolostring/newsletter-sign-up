@@ -1,0 +1,117 @@
+@font-face {
+	font-family: "Roboto";
+	src: url("./assets/fonts/Roboto-Regular.ttf");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Roboto";
+	src: url("./assets/fonts/Roboto-Bold.ttf");
+	font-weight: 700;
+	font-style: normal;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+
+	font-family: "Roboto", Arial, Helvetica, sans-serif;
+	color: hsl(234, 29%, 20%);
+}
+
+h1 {
+	font-size: 2.5rem;
+	margin-bottom: 0.8rem;
+}
+
+#signup-page {
+	display: flex;
+	flex-direction: column;
+}
+
+#signup-page > :not(img) {
+	padding-inline: 1.4rem;
+}
+
+#signup-page ul {
+	list-style-type: none;
+	margin-block: 0rem 3rem;
+}
+
+#signup-page li {
+	display: grid;
+	grid-template-columns: 2rem 1fr 2rem;
+	margin-top: 0.7rem;
+}
+
+#signup-page li::before {
+	content: url("./assets/images/icon-list.svg");
+
+	width: 1rem;
+	height: 1rem;
+}
+
+#signup-page form {
+	display: flex;
+	flex-direction: column;
+}
+
+input {
+	height: 3rem;
+	border-radius: 0.5rem;
+	box-shadow: none;
+	border: none;
+	margin-block: 1rem;
+}
+
+input[type="submit"],
+input[type="button"] {
+	background-color: hsl(234, 29%, 20%);
+	color: hsl(0, 0%, 100%);
+
+	font-size: 1rem;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+#input-email {
+	font-size: 1rem;
+
+	margin-top: 0;
+	padding-inline: 1.2rem;
+
+	border: 1px solid hsla(231, 7%, 60%, 0.353);
+}
+
+label[for="input-email"] {
+	position: relative;
+	font-size: 0.7rem;
+	font-weight: 700;
+	margin-bottom: 0;
+	padding-bottom: 0.5rem;
+}
+
+label[for="input-email"] :nth-child(2) {
+	right: 0;
+	position: absolute;
+	color: hsl(4, 100%, 67%);
+}
+
+#success-message {
+	display: none;
+	flex-direction: column;
+
+	height: 100vh;
+	padding-inline: 1.4rem;
+}
+
+#success-message img {
+	margin-block: 15vh 1rem;
+	width: 4rem;
+	height: 4rem;
+}
+
+#success-message input {
+	margin-block: auto 1rem;
+}
