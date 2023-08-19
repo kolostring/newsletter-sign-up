@@ -28,6 +28,7 @@ body {
 	1.General Styles
 	2.Sign-up Page
 	3.Success Message
+	4.Desktop Styles
 */
 
 /*General Styles*/
@@ -101,7 +102,7 @@ input[type="button"]:hover {
 	0% {
 		background-position: 20% 0px;
 	}
-	1% {
+	20% {
 		background-position: 50% 0px;
 		box-shadow: 0 10px 1rem 0 hsla(350, 100%, 67%, 0.427);
 	}
@@ -188,6 +189,23 @@ label {
 	margin-block: auto 1rem;
 }
 
+#success-message *,
+#signup-page * {
+	animation: drop-fadein 200ms ease-out;
+}
+
+@keyframes drop-fadein {
+	0% {
+		transform: translateY(-30px);
+	}
+	50% {
+		opacity: 100%;
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+
 /*Desktop Styles*/
 @media only screen and (min-width: 800px) {
 	body {
@@ -215,6 +233,16 @@ label {
 		right: 1.5rem;
 	}
 
+	.dynamic-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		background-color: #ffff;
+		border-radius: 2rem;
+		transition: all 200ms ease-in-out;
+	}
+
 	#signup-page {
 		display: grid;
 		position: relative;
@@ -225,7 +253,6 @@ label {
 		height: min(90vh, 500px);
 		padding: 2rem;
 
-		background-color: #ffff;
 		border-radius: 2rem;
 	}
 
@@ -244,7 +271,6 @@ label {
 		height: min(90vh, 360px);
 		padding: 2.3rem 3.3rem;
 
-		background-color: #ffff;
 		border-radius: 2rem;
 	}
 

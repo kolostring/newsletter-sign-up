@@ -3,11 +3,18 @@ const successMessage = document.getElementById("success-message");
 
 const emailForm = document.getElementById("form-email");
 const emailInput = document.getElementById("input-email");
-const emailSubmit = document.getElementById("submit-email");
 const emailLabel = document.getElementById("label-email");
+
+const dynamicContainer =
+	document.getElementsByClassName("dynamic-container")[0];
 
 function validateEmail(email) {
 	return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email);
+}
+
+function updateDynamicContainer(content) {
+	dynamicContainer.style.width = content.offsetWidth + "px";
+	dynamicContainer.style.height = content.offsetHeight + "px";
 }
 
 //*Events Listeners
@@ -34,7 +41,11 @@ emailForm.addEventListener("submit", () => {
 		)[0].innerHTML = `A confirmation email has been sent to <b>${emailInput.value}</b>.
         Please open it and click the button inside to confirm your
         subscription.`;
+
+		updateDynamicContainer(successMessage);
 	} else {
 		emailLabel.setAttribute("valid-email", "false");
 	}
 });
+
+updateDynamicContainer(signupPage);
