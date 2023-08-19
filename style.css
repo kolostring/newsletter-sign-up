@@ -24,57 +24,55 @@ body {
 	color: hsl(234, 29%, 20%);
 }
 
+/*
+	1.General Styles
+	2.Sign-up Page
+	3.Success Message
+*/
+
+/*General Styles*/
+
 h1 {
-	font-size: 2.5rem;
 	margin-bottom: 0.8rem;
+	font-size: 2.5rem;
 }
 
-#signup-page {
-	display: flex;
-	flex-direction: column;
-}
-
-#signup-page > img {
-	display: none;
-}
-
-#signup-page > div > img {
-	width: 100vw;
-}
-
-#signup-page > div > :not(img) {
-	padding-inline: 1.4rem;
-}
-
-#signup-page ul {
+ul {
 	list-style-type: none;
 	margin-block: 0rem 3rem;
 }
 
-#signup-page li {
+li {
 	display: grid;
 	grid-template-columns: 2rem 1fr 2rem;
 	margin-top: 0.7rem;
 }
 
-#signup-page li::before {
+li::before {
 	content: url("./assets/images/icon-list.svg");
 
 	width: 1rem;
 	height: 1rem;
 }
 
-#signup-page form {
-	display: flex;
-	flex-direction: column;
-}
-
 input {
 	height: 3rem;
+	margin-block: 1rem;
+
+	font-size: 1rem;
 	border-radius: 0.5rem;
 	box-shadow: none;
 	border: none;
-	margin-block: 1rem;
+}
+
+input[type="email"] {
+	margin-top: 0;
+	padding-inline: 1.2rem;
+	border: 1px solid hsla(231, 7%, 60%, 0.353);
+}
+
+input[type="email"]:focus {
+	outline: 3px solid #ff6644;
 }
 
 input[type="submit"],
@@ -82,40 +80,96 @@ input[type="button"] {
 	background-color: hsl(234, 29%, 20%);
 	color: hsl(0, 0%, 100%);
 
-	font-size: 1rem;
 	font-weight: 700;
 	cursor: pointer;
+	transition: background-color 200ms, box-shadow 100ms;
 }
 
 input[type="submit"]:hover,
 input[type="button"]:hover {
-	background: linear-gradient(90deg, #ff5671, #ff6644);
-	background-color: transparent;
+	background: linear-gradient(90deg, #242742, #ff5671, #ff6644, #ff5671);
+	background-color: #ff5671;
+	background-size: 200vw;
+
+	background-position: 100% 0;
+	box-shadow: 0 10px 1rem 0 hsla(11, 100%, 63%, 0.427);
+
+	animation: animate-button 1s ease-in-out;
 }
 
-#input-email {
-	font-size: 1rem;
+@keyframes animate-button {
+	0% {
+		background-position: 20% 0px;
+	}
+	1% {
+		background-position: 50% 0px;
+		box-shadow: 0 10px 1rem 0 hsla(350, 100%, 67%, 0.427);
+	}
 
-	margin-top: 0;
-	padding-inline: 1.2rem;
-
-	border: 1px solid hsla(231, 7%, 60%, 0.353);
+	100% {
+		background-position: 100% 0;
+		box-shadow: 0 10px 1rem 0 hsla(11, 100%, 63%, 0.427);
+	}
 }
 
-label[for="input-email"] {
-	position: relative;
+label {
 	font-size: 0.7rem;
 	font-weight: 700;
 	margin-bottom: 0;
 	padding-bottom: 0.5rem;
 }
 
-label[for="input-email"] :nth-child(2) {
-	right: 0;
-	position: absolute;
-	color: hsl(4, 100%, 67%);
+/*Sign-up Page*/
+
+#desktop-img {
+	display: none;
 }
 
+#mobile-img {
+	width: 100vw;
+}
+
+#signup-page {
+	display: flex;
+	flex-direction: column;
+}
+
+#signup-page > div > :not(img) {
+	padding-inline: 1.4rem;
+}
+
+#signup-page form {
+	display: flex;
+	flex-direction: column;
+}
+
+#label-email {
+	position: relative;
+}
+
+#label-email :last-child {
+	position: absolute;
+	right: 0;
+	margin-left: auto;
+
+	opacity: 0;
+	color: #ff6644;
+	transform: translateX(3px);
+
+	transition: opacity 200ms, transform 300ms;
+}
+
+#label-email[valid-email="false"] :last-child {
+	opacity: 100%;
+	transform: translateX(0);
+	display: inline-block;
+}
+
+#label-email[valid-email="false"] + #input-email {
+	background-color: #ff664454;
+}
+
+/*Success Message*/
 #success-message {
 	display: none;
 	flex-direction: column;
@@ -134,7 +188,8 @@ label[for="input-email"] :nth-child(2) {
 	margin-block: auto 1rem;
 }
 
-@media only screen and (min-width: 770px) {
+/*Desktop Styles*/
+@media only screen and (min-width: 800px) {
 	body {
 		background-color: hsl(234, 29%, 20%);
 		display: flex;
@@ -144,17 +199,18 @@ label[for="input-email"] :nth-child(2) {
 		height: 100vh;
 	}
 
-	#signup-page > div > img {
+	input {
+		margin-block: 0.7rem;
+	}
+
+	#mobile-img {
 		display: none;
 	}
 
-	#signup-page > div > h1 {
-		font-size: 3.2rem;
-	}
-
-	#signup-page > img {
+	#desktop-img {
 		display: block;
 		position: absolute;
+
 		height: calc(100% - 3rem);
 		right: 1.5rem;
 	}
@@ -173,12 +229,14 @@ label[for="input-email"] :nth-child(2) {
 		border-radius: 2rem;
 	}
 
-	#signup-page > div {
-		padding-right: 3rem;
+	#signup-page h1 {
+		margin-top: auto;
+		padding-top: 0;
+		font-size: 3.2rem;
 	}
 
-	input {
-		margin-block: 0.7rem;
+	#signup-page > div {
+		padding-right: 3rem;
 	}
 
 	#success-message {
@@ -190,7 +248,7 @@ label[for="input-email"] :nth-child(2) {
 		border-radius: 2rem;
 	}
 
-	#success-message > h1 {
+	#success-message h1 {
 		font-size: 2.9rem;
 		margin-bottom: 0;
 	}

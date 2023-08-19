@@ -10,37 +10,18 @@ function validateEmail(email) {
 	return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email);
 }
 
-function restoreEmailInput() {
-	emailInput.style.backgroundColor = "transparent";
-	emailInput.style.borderColor = "hsla(231, 7%, 60%, 0.353)";
-
-	if (emailLabel.children.length == 2) {
-		emailLabel.lastChild.remove();
-	}
-}
-
-function invalidEmailInput() {
-	emailInput.style.backgroundColor = "hsla(4, 100%, 67%,20%)";
-	emailInput.style.borderColor = "hsla(4, 100%, 67%,50%)";
-
-	if (emailLabel.children.length == 1) {
-		let span = document.createElement("span");
-		span.innerHTML = "Valid email required";
-		emailLabel.appendChild(span);
-	}
-}
-
 //*Events Listeners
 emailInput.addEventListener("focusout", () => {
-	if (validateEmail(emailInput.value)) {
-		restoreEmailInput();
-	} else {
-		invalidEmailInput();
+	if (validateEmail(emailInput.value) == false) {
+		emailLabel.setAttribute("valid-email", "false");
 	}
 });
 
-emailInput.addEventListener("focusin", () => {
-	restoreEmailInput();
+emailInput.addEventListener("input", () => {
+	emailLabel.removeAttribute("valid-email");
+	if (validateEmail(emailInput.value)) {
+		emailLabel.setAttribute("valid-email", "true");
+	}
 });
 
 emailForm.addEventListener("submit", () => {
@@ -54,6 +35,6 @@ emailForm.addEventListener("submit", () => {
         Please open it and click the button inside to confirm your
         subscription.`;
 	} else {
-		invalidEmailInput();
+		emailLabel.setAttribute("valid-email", "false");
 	}
 });
