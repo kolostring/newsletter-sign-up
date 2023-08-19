@@ -19,7 +19,7 @@ function updateDynamicContainer(content) {
 
 //*Events Listeners
 emailInput.addEventListener("focusout", () => {
-	if (validateEmail(emailInput.value) == false) {
+	if (validateEmail(emailInput.value) == "false") {
 		emailLabel.setAttribute("valid-email", "false");
 	}
 });
